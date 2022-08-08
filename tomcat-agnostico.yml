@@ -79,9 +79,8 @@
 
     - name: Set UI access credentials
       template:
-        src: tomcat-users.xml.j2
+        src: tomcat-users.xml
         dest: /opt/tomcat10/conf/tomcat-users.xml
-      notify: restart tomcat
  
     - name: Start and Enable Tomcat 10 on sever
       systemd:
