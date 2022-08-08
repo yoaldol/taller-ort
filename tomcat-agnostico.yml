@@ -24,7 +24,7 @@
 
     - name: Install basic packages
       package:
-        name: ['vim','bash-completion','tmux','tree','htop','wget','unzip','curl','git']
+        name: ['vim','bash-completion','tmux','tree','htop','wget','unzip','curl','git','gzip']
         state: present
       when: '"Rocky" in ansible_distribution'
 
