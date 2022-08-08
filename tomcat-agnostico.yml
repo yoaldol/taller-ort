@@ -47,15 +47,17 @@
         state: directory
 
     - name: Copy Tomcat-user.xml    
-      copy:
+      ansible.builtin.copy:
         src: /home/ansible/taller-ort/tomcat-users.xml
         dest: /opt/tomcat10/conf/
         owner: tomcat
         group: tomcat
         mode: 0755
+        remote_src: yes
+
 
     - name: Copy Tomcat service from local to remote
-      copy:
+      ansible.builtin.copy:
         src: /home/ansible/taller-ort/tomcat.service
         dest: /etc/systemd/system/
         owner: root
