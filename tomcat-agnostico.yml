@@ -61,11 +61,21 @@
 
     - name: Copy Tomcat service from local to remote
       template:
-        src: /home/ansible/taller-ort/tomcat.service.j2
+        src: /home/ansible/taller-ort/tomcat.serviceubuntu
         dest: /etc/systemd/system/tomcat.service
         owner: root
         group: root
         mode: 0755
+      when: '"Ubuntu" in ansible_distribution'
+
+    - name: Copy Tomcat service from local to remote
+      template:
+        src: /home/ansible/taller-ort/tomcat.serviceubuntu
+        dest: /etc/systemd/system/tomcat.service
+        owner: root
+        group: root
+        mode: 0755
+      when: '"RedHat" in ansible_distribution'
 
     - name: Set UI access credentials
       template:
