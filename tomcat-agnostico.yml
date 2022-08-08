@@ -3,63 +3,55 @@
   hosts: webserver
   become: true
   tasks:
-    - name: Update the System Packages
+    - name: Actualizando paquetes del sistema Ubuntu
       apt:
         upgrade: yes
         update_cache: yes
       when: '"Ubuntu" in ansible_distribution'
 
-    - name: Instalar paquete httpd en redhat
+    - name: Actualizando paquetes del sistema Rocky
       yum:
         update_only: yes
         update_cache: latest
       when: '"Rocky" in ansible_distribution'
  
-    - name: Create a Tomcat User
+    - name: Creando usuario Tomcat
       user:
         name: tomcat
  
-    - name: Create a Tomcat Group
+    - name: Creando Grupo de usuarios Tomcat
       group:
         name: tomcat
  
-    - name: Install JAVA
+    - name: Instalando Java en sistema Ubuntu
       apt:
         name: default-jdk
         state: present
       when: '"Ubuntu" in ansible_distribution'
 
-    - name: Install Java 8 CentOS
+    - name: Instalando Java en sistema Rocky
       yum:
         name: java-1.8.0-openjdk
         state: present
       when: '"Rocky" in ansible_distribution'
  
-    - name: Create a Tomcat Directory
+    - name: Creando directorio Tomcat, asignando dueño y permisos recursivos
       file:
         path: /opt/tomcat10
         owner: tomcat
         group: tomcat
         mode: 755
         recurse: yes
+        state: directory
  
-    - name: download & unarchive tomcat10 
+    - name: Descargando Tomcat 10 y descomprimiendo
       unarchive:
         src: https://dlcdn.apache.org/tomcat/tomcat-10/v10.0.23/bin/apache-tomcat-10.0.23.tar.gz
         dest: /opt/tomcat10
         remote_src: yes
         extra_opts: [--strip-components=1]
- 
-    - name: Change ownership of tomcat directory
-      file:
-        path: /opt/tomcat10
-        owner: tomcat
-        group: tomcat
-        mode: "u+rwx,g+rx,o=rx"
-        recurse: yes
-        state: directory
 
-    - name: Copy Tomcat service from local to remote
+    - name: Copiando servicio tomcat desde local hasta el nodo Ubuntu
       template:
         src: /home/ansible/taller-ort/tomcat.serviceubuntu
         dest: /etc/systemd/system/tomcat.service
@@ -68,7 +60,7 @@
         mode: 0755
       when: '"Ubuntu" in ansible_distribution'
 
-    - name: Copy Tomcat service from local to remote
+    - name: Copiando servicio tomcat desde local hasta el nodo Rocky
       template:
         src: /home/ansible/taller-ort/tomcat.serviceubuntu
         dest: /etc/systemd/system/tomcat.service
