@@ -49,7 +49,7 @@
     - name: Copy Tomcat-user.xml    
       copy:
         src: /home/ansible/taller-ort/tomcat-users.xml
-        dest: /opt/tomcat10/conf/tomcat-users.xml
+        dest: /opt/tomcat10/conf/
         owner: tomcat
         group: tomcat
         mode: 0755
