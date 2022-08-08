@@ -12,7 +12,6 @@
     - name: Actualizando paquetes del sistema Rocky
       yum:
         update_only: yes
-        update_cache: latest
       when: '"Rocky" in ansible_distribution'
  
     - name: Creando usuario Tomcat
