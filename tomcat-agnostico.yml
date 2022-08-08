@@ -48,8 +48,10 @@
  
     - name: Copy Tomcat service from local to remote
       copy:
-        src: /etc/tomcat.service
+        src: /home/ansible/taller-ort/tomcat.service
         dest: /etc/systemd/system/
+        owner: root
+        group: root
         mode: 0755
  
     - name: Start and Enable Tomcat 10 on sever
