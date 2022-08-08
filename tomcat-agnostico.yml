@@ -2,12 +2,31 @@
 - name: Instalando Tomcat 10
   hosts: webserver
   become: true
-  tasks:
+  tasks: 
+    - name: Install basic packages
+      package:
+        name: ['vim','aptitude','bash-completion','tmux','tree','htop','wget','unzip','curl','git']
+        state: present
+        update_cache: yes
+      when: '"Ubuntu" in ansible_distribution'
+
     - name: Actualizando paquetes del sistema Ubuntu
       apt:
         upgrade: yes
         update_cache: yes
       when: '"Ubuntu" in ansible_distribution'
+
+    - name: Add EPEL repository
+      yum:
+        name: epel-release
+        state: present
+      when: '"Rocky" in ansible_distribution'
+
+    - name: Install basic packages
+      package:
+        name: ['vim','bash-completion','tmux','tree','htop','wget','unzip','curl','git']
+        state: present
+      when: '"Rocky" in ansible_distribution'
 
     - name: Actualizando paquetes del sistema Rocky
       yum:
