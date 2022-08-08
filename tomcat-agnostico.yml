@@ -87,11 +87,6 @@
         mode: 0755
       when: '"Rocky" in ansible_distribution'
 
-    - name: Creando directorio Tomcat, asignando dueño y permisos recursivos
-      ansible.builtin.file:
-        path: /opt/tomcat10/conf/tomcat-users.xml
-        state: absent
-
     - name: Set UI access credentials
       ansible.builtin.template:
         src: /home/ansible/taller-ort/tomcat-users.xml
