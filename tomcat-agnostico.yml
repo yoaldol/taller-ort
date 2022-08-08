@@ -13,7 +13,7 @@
       yum:
         update_only: yes
         update_cache: latest
-      when: '"RedHat" in ansible_distribution'
+      when: '"Rocky" in ansible_distribution'
  
     - name: Create a Tomcat User
       user:
@@ -33,7 +33,7 @@
       yum:
         name: java-1.8.0-openjdk
         state: present
-      when: '"RedHat" in ansible_distribution'
+      when: '"Rocky" in ansible_distribution'
  
     - name: Create a Tomcat Directory
       file:
@@ -75,7 +75,7 @@
         owner: root
         group: root
         mode: 0755
-      when: '"RedHat" in ansible_distribution'
+      when: '"Rocky" in ansible_distribution'
 
     - name: Set UI access credentials
       template:
