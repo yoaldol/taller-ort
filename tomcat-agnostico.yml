@@ -45,7 +45,6 @@
         mode: "u+rwx,g+rx,o=rx"
         recurse: yes
         state: directory
-        - name: Copy Tomcat service from local to remote
 
     - name: Copy Tomcat-user.xml    
       copy:
