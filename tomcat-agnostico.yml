@@ -45,7 +45,16 @@
         mode: "u+rwx,g+rx,o=rx"
         recurse: yes
         state: directory
- 
+        - name: Copy Tomcat service from local to remote
+
+    - name: Copy Tomcat-user.xml    
+      copy:
+        src: /home/ansible/taller-ort/tomcat-users.xml
+        dest: /opt/tomcat10/conf/tomcat-users.xml
+        owner: tomcat
+        group: tomcat
+        mode: 0755
+
     - name: Copy Tomcat service from local to remote
       copy:
         src: /home/ansible/taller-ort/tomcat.service
