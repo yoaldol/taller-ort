@@ -58,7 +58,7 @@
         path: /opt/tomcat10
         owner: tomcat
         group: tomcat
-        mode: 755
+        mode: 0755
         recurse: yes
         state: directory
  
