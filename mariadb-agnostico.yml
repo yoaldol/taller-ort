@@ -20,7 +20,8 @@
       community.mysql.mysql_user:
         name: root
         password: ansible
-
+        state: present
+        
     - name: Removes all anonymous user accounts
       community.mysql.mysql_user:
         name: ''
