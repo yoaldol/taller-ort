@@ -19,20 +19,20 @@
     - name: Sets the root password
       community.mysql.mysql_user:
         name: root
-        password: ansible
-        state: present
-        
+        password: abc123
+        login_unix_socket: /var/run/mysqld/mysqld.sock
+
     - name: Removes all anonymous user accounts
       community.mysql.mysql_user:
         name: ''
         host_all: yes
         state: absent
         login_user: root
-        login_password: ansible
+        login_password: abc123
 
     - name: Removes the MySQL test database
       community.mysql.mysql_db:
         name: test
         state: absent
         login_user: root
-        login_password: ansible
+        login_password: abc123
