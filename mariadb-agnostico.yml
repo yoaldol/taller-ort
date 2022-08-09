@@ -28,11 +28,11 @@
         host_all: yes
         state: absent
         login_user: root
-        login_password: "{{ mysql_root_password }}"
+        login_password: ansible
 
     - name: Removes the MySQL test database
       community.mysql.mysql_db:
         name: test
         state: absent
         login_user: root
-        login_password: "{{ mysql_root_password }}"
+        login_password: ansible
