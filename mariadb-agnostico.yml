@@ -9,7 +9,7 @@
       vars: 
         packages: 
         - python3-pymysql
-        - mariadb
+        - mariadb-server
     
     - name: Start MariaDB service
       ansible.builtin.service:
