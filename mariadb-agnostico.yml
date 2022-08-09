@@ -4,7 +4,7 @@
   become: true
   tasks: 
     - name: Install MariaDB Packages
-      apt:
+      ansible.builtin.apt:
         name: "{{ packages }}"
       vars: 
         packages: 
@@ -12,7 +12,7 @@
         - mariadb
     
     - name: Start MariaDB service
-      service:
+      ansible.builtin.service:
         name: mariadb
         state: started
 
