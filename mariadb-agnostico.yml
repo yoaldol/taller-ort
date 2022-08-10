@@ -10,6 +10,16 @@
         packages: 
         - python3-pymysql
         - mariadb-server
+      when: '"Ubuntu" in ansible_distribution'
+
+    - name: Install MariaDB Packages
+      ansible.builtin.dnf:
+        name: "{{ packages }}"
+      vars: 
+        packages: 
+        - python3-pymysql
+        - mariadb-server
+      when: '"Rocky" in ansible_distribution'
     
     - name: Start MariaDB service
       ansible.builtin.service:
@@ -36,3 +46,10 @@
         state: absent
         login_user: root
         login_password: abc123
+
+    - name: Create a new database with name 'bobdata'
+      community.mysql.mysql_db:
+        name: bobdata
+        state: present
+
+    
