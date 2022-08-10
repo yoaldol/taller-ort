@@ -1,0 +1,17 @@
+---
+- name: Instalando MariaDB
+  hosts: webserver
+  become: true
+  tasks: 
+    - name: Install MariaDB Packages
+      ansible.builtin.apt:
+        name: "{{ packages }}"
+      vars: 
+        packages: 
+        - python3-pymysql
+        - mariadb-server
+    
+    - name: Start MariaDB service
+      ansible.builtin.service:
+        name: mariadb
+        state: started
